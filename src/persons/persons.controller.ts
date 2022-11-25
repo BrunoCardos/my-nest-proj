@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query } from "@nestjs/common";
-import { Cat } from "./cat.entity";
+import { PersonDto } from "./dtos/person.dto";
 import { Person } from "./person.entity";
 import { PersonsService } from "./persons.service";
 
@@ -12,25 +12,26 @@ export class PersonsController {
 
     @Get()
     getAll(@Query('name') searchName: string): Array<Person> {
-        return this.personsService.getAll(searchName);
+        return this.personsService.getAll();
     }
 
     @Post()
-    create(@Body() newPerson: Person): Person {
-        return this.personsService.add(newPerson);
+    create(@Body() createPersonDto: PersonDto): Person {
+        return this.personsService.add(createPersonDto.name, createPersonDto.phone);
     }
 
     @Put(':id')
-    update(@Param('id') id: number, @Body() updatedData: Person) {
-        return this.personsService.update( updatedData, id)
+    update(@Param('id') id: number, @Body() updatePersonDto: PersonDto): Person {
+        return this.personsService.update(id, updatePersonDto.name, updatePersonDto.phone)
     }
 
     @Get(':id')
-    getOne(@Param('id') id: number) {
+    getOne(@Query('name') searchName: string): Person {
+        return this.personsService.getOne(searchName);
     }
 
     @Delete(':id')
-    delete(@Param('id') id: number) {
+    delete(@Param('id') id: number): void {
         return this.personsService.delete(id)
     }
 }
