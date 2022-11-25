@@ -17,7 +17,6 @@ export class PersonsController {
 
     @Post()
     create(@Body() newPerson: Person): Person {
-        console.log(newPerson);
         return this.personsService.add(newPerson);
     }
 

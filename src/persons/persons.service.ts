@@ -4,33 +4,22 @@ import { Person } from "./person.entity";
 @Injectable()
 export class PersonsService {
 
-    listOfPersons = [
-        {
-            id: 11,
-            name: "Game of Thrones",
-            phone: 5802943
-        },
-        {
-            id: 12,
-            name: "Alvinho",
-            phone: 5638290
-        },
-        {
-            id: 13,
-            name: "Vera",
-            phone: 5638290
-        },
-        {
-            id: 14,
-            name: "Domingo",
-            phone: 8987344
-        }
-    ];
+
+
+    listOfPersons: Array<Person> = new Array(
+        new Person(11, 'Game of Thrones 1', 5458428),
+        new Person(12, 'Game of Thrones 2', 5458428),
+        new Person(13, 'Game of Thrones 3', 5458428),
+        new Person(14, 'Game of Thrones 4', 5458428),
+        new Person(15, 'Game of Thrones 5', 5458428),
+    )
 
     generateId() {
         let lastPerson = this.listOfPersons[this.listOfPersons.length - 1];
         return lastPerson.id + 1;
     }
+
+
 
     getAll(searchName): Array<Person> {
 
