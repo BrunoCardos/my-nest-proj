@@ -15,29 +15,28 @@ export class FilemanagerService {
 
     fs.writeFileSync(filePath, content);
     return name + 'txt'
-
-
   }
 
   findAll() {
-    return `This action returns all filemanager`;
+    const filePath = `resources`
+    return fs.readdirSync(filePath);
   }
 
   findOne(filename: string) {
-    const filePath = `resources/${filename}.txt`;
-
-    const data = fs.readFileSync(filePath, 'utf8');
     
+    const filePath = `resources/${filename}.txt`;
+    const data = fs.readFileSync(filePath, 'utf8');
 
     if (fs.existsSync(filePath)) {
       return data;
     }
     throw new FileException(`File with the name ${filename} not exist`)
   }
-    
-  
+
+
 
   update(name: string, content: string) {
+    
     const filePath = `resources/${name}.txt`
 
     if (fs.existsSync(filePath)) {
@@ -48,7 +47,7 @@ export class FilemanagerService {
   }
 
   remove(filename: string) {
-    
+
     const filePath = `resources/${filename}.txt`;
 
     if (fs.existsSync(filePath)) {
