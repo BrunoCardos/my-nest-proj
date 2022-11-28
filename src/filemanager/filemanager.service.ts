@@ -17,7 +17,7 @@ export class FilemanagerService {
     return name + 'txt'
   }
 
-  findAll(): object {
+  findAll() {
     const filePath = `resources`
     return fs.readdirSync(filePath);
   }
