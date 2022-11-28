@@ -17,9 +17,9 @@ export class FilemanagerController {
     return this.filemanagerService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.filemanagerService.findOne(+id);
+  @Get(':filename')
+  findOne(@Param('filename') filename: string) {
+    return this.filemanagerService.findOne(filename);
   }
 
   @Put(':filename')

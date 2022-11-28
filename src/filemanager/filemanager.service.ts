@@ -23,9 +23,19 @@ export class FilemanagerService {
     return `This action returns all filemanager`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} filemanager`;
+  findOne(filename: string) {
+    const filePath = `resources/${filename}.txt`;
+
+    const data = fs.readFileSync(filePath, 'utf8');
+    
+
+    if (fs.existsSync(filePath)) {
+      return data;
+    }
+    throw new FileException(`File with the name ${name} not exist`)
   }
+    
+  
 
   update(name: string, content: string) {
     const filePath = `resources/${name}.txt`
