@@ -27,8 +27,8 @@ export class FilemanagerController {
     return this.filemanagerService.update(filename, updateFilemanagerDto.content);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.filemanagerService.remove(+id);
+  @Delete(':filename')
+  remove(@Param('filename') filename: string) {
+    return this.filemanagerService.remove(filename);
   }
 }

@@ -32,7 +32,7 @@ export class FilemanagerService {
     if (fs.existsSync(filePath)) {
       return data;
     }
-    throw new FileException(`File with the name ${name} not exist`)
+    throw new FileException(`File with the name ${filename} not exist`)
   }
     
   
@@ -47,7 +47,14 @@ export class FilemanagerService {
     throw new FileException(`File with the name ${name} not exist`)
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} filemanager`;
+  remove(filename: string) {
+    
+    const filePath = `resources/${filename}.txt`;
+
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+      return ` ${filename}.txt deleted `
+    }
+    throw new FileException(`File with the name ${filename} not exist`)
   }
 }
